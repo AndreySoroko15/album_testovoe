@@ -1,0 +1,55 @@
+header {
+    background-color: rgb(220, 220, 220) !important;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+footer {
+    background-color: rgb(220, 220, 220);
+    height: 10%;
+}
+
+/* registry and login pages */
+
+.registry-form, .login-form {
+    width: 30%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: rgb(243, 243, 243);
+    border: 1px solid darkgray;
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+}
+
+/* .submit-button {
+    width: 100px;
+} */
+
+/* main page */
+
+aside {
+    width: 20%;
+}
+
+.album h2 {
+    color: rgba(71, 71, 71, 0.699);
+}
+
+.album-active {
+    color: rgb(71, 71, 71) !important;
+}
+
+.albums-dashboard {
+    width: 80%;
+    border-left: 2px solid darkgray;
+}
+
+.search-album {
+    width: 70%;
+}
+
