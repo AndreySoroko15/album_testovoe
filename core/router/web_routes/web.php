@@ -12,6 +12,11 @@ class web {
                 'class' => 'RegisterController',
                 'method' => 'index',
         ),
+        '/user-registration' => array(
+                'file' => 'app/controller/auth/RegisterController.php',
+                'class' => 'RegisterController',
+                'method' => 'registration',
+        ),
         '/login' => array(
                 'file' => 'app/controller/auth/LoginController.php',
                 'class' => 'LoginController',
