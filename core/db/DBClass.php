@@ -1,7 +1,5 @@
 <?php
 
-use Core\DB\DbClass as DBDbClass;
-
 class DBClass 
 {
     private $ini_file = 'db.ini';
@@ -10,7 +8,7 @@ class DBClass
     private static $instance = null;
 
     public static function getInstance() {
-        if(self::$instance == null) {
+        if(!self::$instance) {
             return self::$instance = new self();
         }
         
@@ -41,9 +39,7 @@ class DBClass
             echo 'Подключено успешно';
         }
     }
+
     private function __construct() {}
     private function __clone() {}
-
 }
-
-DBClass::getInstance();
