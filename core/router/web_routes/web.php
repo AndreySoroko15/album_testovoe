@@ -12,6 +12,11 @@ class web {
                 'class' => 'RegisterController',
                 'method' => 'index',
         ),
+        '/login' => array(
+                'file' => 'app/controller/auth/LoginController.php',
+                'class' => 'LoginController',
+                'method' => 'index',
+        ),
     ];
     
     //поиска роута в мапке 
