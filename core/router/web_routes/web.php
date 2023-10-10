@@ -3,15 +3,15 @@
 class web {
     private static $routes = [
         '/' => array(
-                'file' => 'app/controllers/IndexController.php',
-                'class' => 'App\Controllers\IndexController',
+                'file' => 'app/controller/IndexController.php',
+                'class' => 'IndexController',
                 'method' => 'index',
             ),
-        '/test' => array(
-                'file' => 'app/controllers/TestController.php',
-                'class' => 'App\Controllers\TestController',
+        '/registration' => array(
+                'file' => 'app/controller/auth/RegisterController.php',
+                'class' => 'RegisterController',
                 'method' => 'index',
-            ),
+        ),
     ];
     
     //поиска роута в мапке 

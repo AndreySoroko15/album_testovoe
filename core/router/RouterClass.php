@@ -20,7 +20,6 @@ class RouterClass extends AbstractCore {
         $this->checkFile($file);
         $obj = $this->checkClass($file);
         $this->checkMethod($obj, $file['method']);
-
     }
 
     public function checkFile($param)
@@ -41,12 +40,14 @@ class RouterClass extends AbstractCore {
         return new $param['class']();
     }
 
-    public function checkMethod($obj, $method, $params = null) {
+    public function checkMethod($obj, $method) {
+        // var_dump($obj);
         if(!method_exists($obj, $method)) {
             die("Метод $method не существует");
         }
 
-        $obj->method($params);
+        $obj->$method();
+        // echo "Метод cуществует";
     }
 
     public static function getInstance() 
@@ -61,4 +62,3 @@ class RouterClass extends AbstractCore {
     private function __construct(){}
     private function __clone(){}
 } 
-
