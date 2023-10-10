@@ -1,6 +1,7 @@
 <?php
+$path = $_SERVER['DOCUMENT_ROOT'];
 
-require_once '../AbstractCore.php';
+require_once $path . '/core/AbstractCore.php';
 
 
 class DBClass extends AbstractCore
@@ -39,7 +40,7 @@ class DBClass extends AbstractCore
         if ($this->mysqli === false) {
             echo 'Ошибка при подключении БД';
         } else {
-            echo 'Подключено успешно';
+            // echo 'Подключено успешно';
         }
     }
 

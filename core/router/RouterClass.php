@@ -1,21 +1,19 @@
 <? 
+$path = $_SERVER['DOCUMENT_ROOT'];
 
-require_once '../AbstractCore.php';
-require_once './web_routes/web.php';
+require_once $path . '/core/AbstractCore.php';
+require_once $path . '/core/router/web_routes/web.php';
 
 class RouterClass extends AbstractCore {
     private $path = null;
-    private $instance = null;
+    private static $instance = null;
     public function init() 
     {
         $this->path = explode('/', $_SERVER['REQUEST_URI']);
-
-
-        var_dump($this->path);
     }
 
     // исходя из запроса проверяет на соответствие по 3 параметрам (файл, класс, метод)
-    public function findPath($param)
+    public function findPath()
     {
         $file = web::findRoute($_SERVER['REQUEST_URI']);
 
@@ -60,8 +58,7 @@ class RouterClass extends AbstractCore {
         return self::$instance;
     }
 
-    // private function __construct(){}
-    // private function __clone(){}
+    private function __construct(){}
+    private function __clone(){}
 } 
 
-$obj = new RouterClass();
