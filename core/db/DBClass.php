@@ -1,6 +1,9 @@
 <?php
 
-class DBClass 
+require_once '../AbstractCore.php';
+
+
+class DBClass extends AbstractCore
 {
     private $ini_file = 'db.ini';
     private $iniData = [];
