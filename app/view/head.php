@@ -1,3 +1,5 @@
+<? session_start() ?>
+
 <!DOCTYPE html>
 <html lang="ru">
     <head>
@@ -22,10 +24,24 @@
                 <nav class="navbar navbar-expand-md">
                     <div class="container-fluid d-flex justify-content-between">
                         <a class="navbar-brand" href="#">Альбом</a>
-                        <div class="navbar-nav">
-                                <a class="nav-link" href="/login">Вход</a>
-                                <a class="nav-link" href="/registration">Регистрация</a>
-                        </div>
+
+                        <?php if(isset($_SESSION['login'])): ?>
+                            <div class="navbar-nav dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre> 
+                                    <?= $_SESSION['login'] ?>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/logout">
+                                        Выйти
+                                    </a>
+                            </div>
+                        <?php else: ?>
+                            <div class="navbar-nav">
+                                    <a class="nav-link" href="/login">Вход</a>
+                                    <a class="nav-link" href="/registration">Регистрация</a>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </nav>
             </div>

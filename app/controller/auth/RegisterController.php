@@ -15,9 +15,14 @@ class RegisterController {
         $login = $_POST['login'];
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $password_confirm = $_POST['password_confirm'];
+        
+        if($password === $password_confirm) {
+            $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $user = new UserModel();
+            $user = UserModel::getInstance();
+            $user->createUser($login, $email, $password);
+        }
 
-        $user->createUser($login, $email, $password);
     }
 }
