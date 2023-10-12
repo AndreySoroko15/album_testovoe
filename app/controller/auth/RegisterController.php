@@ -5,7 +5,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/UserModel.php';
 class RegisterController {
     public function index() 
     {
-        require_once 'app/view/registry.php';
+        session_start(); 
+        
+        if(!isset($_SESSION['login'])) {
+            require_once 'app/view/registry.php';
+        } else {
+            header('Location: /');
+        }
     }
 
     public function registration() {

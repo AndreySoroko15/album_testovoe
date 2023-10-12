@@ -39,6 +39,7 @@ class UserModel extends Model
                 session_start();
 
                 $_SESSION['login'] = $curr_user['login'];
+                $_SESSION['user_id'] = $curr_user['id'];
                 
                 header('Location: /');
             }
@@ -46,7 +47,6 @@ class UserModel extends Model
             echo 'Ошибка' . mysqli_error($this->mysqli);
         }
     } 
-
 
     public static function getInstance() 
     {
@@ -57,7 +57,7 @@ class UserModel extends Model
         return self::$instance;
     }
 
-    public function __construct() 
+    protected function __construct() 
     {
         parent::__construct();
     }
@@ -65,7 +65,3 @@ class UserModel extends Model
     private function __clone() {}
 
 }
-
-// $user = UserModel::getInstance();
-
-// $user->checkUserFromDB('lesha12', '$2y$10$g/HkC/0bpdf9zOJ8rz3JjecLPUBDnlKWvd2ucBQ4QNG..0IFeBpXS');

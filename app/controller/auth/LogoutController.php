@@ -6,9 +6,9 @@ class LogoutController
     {
         session_start();
 
-        if(isset($_SESSION)) {
-            unset($_SESSION['login']);
+        if(isset($_SESSION['login'])) {
 
+            session_unset();
             session_destroy();
 
             header('Location: /login');

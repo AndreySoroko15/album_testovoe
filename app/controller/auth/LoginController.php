@@ -5,7 +5,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/UserModel.php';
 class LoginController {
     public function index() 
     {
-        require_once 'app/view/login.php';
+        session_start(); 
+
+        if(!isset($_SESSION['login'])) {
+            require_once 'app/view/login.php';
+        } else {
+            header('Location: /'); 
+        }
     }
 
     public function login() 

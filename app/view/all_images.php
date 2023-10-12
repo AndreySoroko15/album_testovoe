@@ -14,7 +14,14 @@
             </form>
     </div>
     <div class="row">
+        <?php foreach ($images as $image): ?>
         <div class="album-card col-3 p-4 text-center">
+            <img src="http://placehold.it/150x100">
+            <p><?= $image['image_name'] ?></p>
+        </div>
+        <?php endforeach; ?>
+
+        <!-- <div class="album-card col-3 p-4 text-center">
             <img src="http://placehold.it/150x100">
             <p>image name</p>
         </div>
@@ -53,11 +60,7 @@
         <div class="album-card col-3 p-4 text-center">
             <img src="http://placehold.it/150x100">
             <p>image name</p>
-        </div>
-        <div class="album-card col-3 p-4 text-center">
-            <img src="http://placehold.it/150x100">
-            <p>image name</p>
-        </div>
+        </div> -->
     </div>
 </div>
 </div>
