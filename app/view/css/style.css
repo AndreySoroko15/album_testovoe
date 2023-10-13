@@ -37,7 +37,7 @@ aside {
 }
 
 .album:hover {
-    background-color: rgba(220, 220, 220, 0.425);
+    background-color: rgb(245, 245, 245);
 }
 
 .album h2 {
@@ -45,15 +45,53 @@ aside {
 }
 
 .album-active {
-    color: rgb(71, 71, 71) !important;
+    background-color: rgb(245, 245, 245);
 }
 
 .albums-dashboard {
     width: 80%;
     border-left: 2px solid rgb(220, 220, 220);
+    border-right: 2px solid rgb(220, 220, 220);
+}
+
+.album-header {
+    background-color: rgba(228, 228, 228, 0.329);
+    border-bottom: 2px solid rgb(220, 220, 220);
+}
+
+.add-image-button {
+    border: 1px solid rgba(16, 141, 16, 0.26);
+    background-color: rgba(101, 221, 101, 0.151);
+    border-radius: 10px;
+}
+
+.add-image-button:hover {
+    border: 1px solid rgba(16, 141, 16, 0.575);
+    background-color: rgba(84, 196, 84, 0.507);
+    transition: 0.6s;
+}
+
+.add-image-button p {
+    margin: 0;
+    color: rgb(102, 102, 102);
+}
+
+.add-image-button:hover > p {
+    color: rgb(0, 0, 0);
 }
 
 .search-album {
-    width: 70%;
+    width: 40%;
 }
 
+.add-image-block {
+    position: fixed;
+    transform: translate(-50%, -50%); 
+    left: 50%; 
+    top: 50%; 
+    background-color: rgb(247, 247, 247);
+    width: 30%;
+    box-shadow: 0 0 6vh rgba(0, 0, 0, 0.274);
+    opacity: 1;
+    display: none;
+}
