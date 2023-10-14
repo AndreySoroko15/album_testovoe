@@ -1,67 +1,88 @@
 <?php 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/Model.php';
+// require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/Model.php';
 
-class UserModel extends Model 
+class UserModel
 {
-    private static $instance = null;
+    private $id;
+    private $login;
+    private $email;
 
-    public function createUser($login, $email, $password) 
+    public function getUserId ()
     {
-        $query = "INSERT INTO users (login, email, password) VALUES ('$login', '$email', '$password')";
+        $this->id;
+    }
 
-        // echo $query . '<br>';
+    public function getUserLogin ()
+    {
+        $this->login;
+    }
 
-        $create = mysqli_query($this->mysqli, $query);
+    public function getEmail ()
+    {
+        $this->email;
+    }
 
-        if($create) {
-            session_start();
+    // private static $instance = null;
 
-            $_SESSION['login'] = $login;
+    // public function createUser($login, $email, $password) 
+    // {
+    //     $query = "INSERT INTO users (login, email, password) VALUES ('$login', '$email', '$password')";
+
+    //     // echo $query . '<br>';
+
+    //     $create = mysqli_query($this->mysqli, $query);
+
+    //     if($create) {
+    //         session_start();
+
+    //         $_SESSION['login'] = $login;
             
-            header('Location: /');
-        } else {
-            echo 'Ошибка: ' . mysqli_error($this->mysqli);
-        }
-    }
+    //         header('Location: /');
+    //     } else {
+    //         echo 'Ошибка: ' . mysqli_error($this->mysqli);
+    //     }
+    // }
 
-    public function checkLoginUser($login, $password) 
-    {
-        // логин у меня в БД с индексом UNIQUE, поэтому поиск могу в принципе вести только по логину
-        $query = "SELECT * FROM users WHERE login = '$login'";
+    // public function checkLoginUser($login, $password) 
+    // {
+    //     // логин у меня в БД с индексом UNIQUE, поэтому поиск могу в принципе вести только по логину
+    //     $query = "SELECT * FROM users WHERE login = '$login'";
 
-        $getPass = mysqli_query($this->mysqli, $query);
+    //     $getPass = mysqli_query($this->mysqli, $query);
 
-        if($getPass) {
-            $curr_user = mysqli_fetch_assoc($getPass);
+    //     if($getPass) {
+    //         $curr_user = mysqli_fetch_assoc($getPass);
 
-            if(password_verify($password, $curr_user['password'])) {
-                session_start();
+    //         if(password_verify($password, $curr_user['password'])) {
+    //             session_start();
 
-                $_SESSION['login'] = $curr_user['login'];
-                $_SESSION['user_id'] = $curr_user['id'];
+    //             $_SESSION['login'] = $curr_user['login'];
+    //             $_SESSION['user_id'] = $curr_user['id'];
                 
-                header('Location: /');
-            }
-        } else {
-            echo 'Ошибка' . mysqli_error($this->mysqli);
-        }
-    } 
+    //             header('Location: /');
+    //         }
+    //     } else {
+    //         echo 'Ошибка' . mysqli_error($this->mysqli);
+    //     }
+    // } 
 
-    public static function getInstance() 
-    {
-        if(!self::$instance) {
-            self::$instance = new self();
-        }
+    // public static function getInstance() 
+    // {
+    //     if(!self::$instance) {
+    //         self::$instance = new self();
+    //     }
 
-        return self::$instance;
-    }
+    //     return self::$instance;
+    // }
 
-    protected function __construct() 
-    {
-        parent::__construct();
-    }
+    // protected function __construct() 
+    // {
+    //     parent::__construct();
+    // }
 
-    private function __clone() {}
+    // private function __clone() {}
+
+
 
 }

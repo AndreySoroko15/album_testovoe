@@ -2,7 +2,7 @@
 
 require_once 'core/CoreClass.php';
 require_once 'core/router/RouterClass.php';
-require_once 'app/controller/MainController.php';
+require_once 'app/controller/ImageController.php';
 
 
 // подключаем ядро проекта
@@ -22,6 +22,6 @@ $router->findPath(); // неизвестно почему считает, что
 // Проверьте, если первая часть URL - 'album', и есть вторая часть
 if (isset($_GET['name'])) {
     $albumName = $_GET['name'];
-    $controller = new MainController();
-    $controller->show($albumName);
+    $controller = new ImageController();
+    // $controller->show($albumName);
 }

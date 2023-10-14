@@ -1,6 +1,7 @@
 <?php 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/UserModel.php';
+// require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/UserModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controller/UserController.php';
 
 class LoginController {
     public function index() 
@@ -21,7 +22,7 @@ class LoginController {
 
         if(!empty($login) && !empty($password)) {
 
-            $user = UserModel::getInstance();
+            $user = new UserController();
 
             $user->checkLoginUser($login, $password);
             

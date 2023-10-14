@@ -3,15 +3,22 @@
 class web {
     private static $routes = [
         '/' => array(
-            'file' => 'app/controller/MainController.php',
-            'class' => 'MainController',
-            'method' => 'index',
+
+            'file' => 'app/controller/AlbumController.php',
+            'class' => 'AlbumController',
+            'method' => 'notSelectedAlbum',
         ),
         
         '/album' => array(
-            'file' => 'app/controller/MainController.php',
-            'class' => 'MainController',
-            'method' => 'show',
+            'file' => 'app/controller/ImageController.php',
+            'class' => 'ImageController',
+            'method' => 'display',
+        ),
+
+        '/create-image' => array (
+            'file' => 'app/controller/ImageController.php', 
+            'class' => 'ImageController',
+            'method' => 'create',
         ),
 
         '/registration' => array(

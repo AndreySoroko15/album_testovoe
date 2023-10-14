@@ -1,6 +1,6 @@
 <?php 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/UserModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controller/UserController.php';
 
 class RegisterController {
     public function index() 
@@ -26,9 +26,8 @@ class RegisterController {
         if($password === $password_confirm) {
             $password = password_hash($password, PASSWORD_DEFAULT);
 
-            $user = UserModel::getInstance();
+            $user = new UserController();
             $user->createUser($login, $email, $password);
         }
-
     }
 }

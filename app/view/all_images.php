@@ -21,7 +21,7 @@
         <?php foreach ($images as $image): ?>
         <div class="album-card col-3 p-4 text-center">
             <img src="http://placehold.it/150x100">
-            <p><?= $image['image_name'] ?></p>
+            <p><?= $image->getImageName() ?></p>
         </div>
         <?php endforeach; ?>
     </div>
@@ -30,10 +30,12 @@
 
 <!-- Всплывающее окно добавление изображения -->
 <div class="add-image-block d-none">
-    <form action="#" class="add-image-form form-group p-5" method="POST">
+    <form action="/create-image" class="add-image-form form-group p-5" method="POST" enctype="multipart/form-data">
         <input type="text" class="form-control" name="image_name" placeholder="Имя изображения" id="image_name">
         <textarea class="form-control mt-4 mb-4" name="description" placeholder="Описание" id="description_image"></textarea>
         <input type="file" class="form-control" name="image" id="image_file">
+        <input type="hidden" class="form-control" name="album_id" value="<?= $albums[0]->getId() ?>">
+        <input type="submit" value="Загрузить">
     </form>
 </div>
 <script>

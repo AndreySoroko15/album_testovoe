@@ -1,17 +1,22 @@
-<?php
+<?php 
 
-// use Core\Core;
-// require_once '../../core/CoreClass.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/core/CoreClass.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/core/db/DBClass.php';
 
-// class Controller 
-// {
-//     public function display($template = 'index.html', array $params = [])
-//     {
-//         //не пересоздаем, а получаем уже созданный объект
-//         $core      = CoreClass::getInstance();
-//         // $templater = $core->getSystemObject('template');
-//         // $twig      = $templater->getTwig();
-        
-//         echo $twig->render($template, $params);
-//     } 
-// }
+class Controller {
+    protected $db = null;
+    protected $mysqli = null;
+
+    public function __construct() 
+    {
+        $core = CoreClass::getInstance();
+        $this->db = $core->getSystemObject('db');
+        $this->mysqli = $this->db->getDbConnection();
+
+        // if($this->mysqli) {
+        //     echo 'Успешное подключение';
+        // } else {
+        //     echo 'Подключение не установлено';
+        // }
+    }
+}

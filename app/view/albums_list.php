@@ -4,14 +4,14 @@
             
             <?php foreach ($albums as $album): ?>
 
-            <a href="/album?name=<?= $album['album_name'] ?>">
-                <?php if($_GET['name'] == $album['album_name']) {?>
+            <a href="/album?name=<?= $album->getAlbumName() ?>">
+                <?php if($_GET['name'] == $album->getAlbumName()) { ?>
                     <div class="album album-active text-start p-2">
-                        <h2 class="fs-6"><?= $album['album_name'] ?></h2>
+                        <h2 class="fs-6"><?= $album->getAlbumName() ?></h2>
                     </div>
                 <?php } else { ?>
                     <div class="album text-start p-2">
-                        <h2 class="fs-6"><?= $album['album_name'] ?></h2>
+                        <h2 class="fs-6"><?= $album->getAlbumName() ?></h2>
                     </div>
                 <?php } ?>
             </a>

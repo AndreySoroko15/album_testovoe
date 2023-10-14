@@ -1,32 +1,62 @@
 <?php 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/Model.php';
+// require_once $_SERVER['DOCUMENT_ROOT'] . '/app/model/Model.php';
 
-class ImageModel extends Model 
+// class ImageModel
+// {
+//     public function __construct()
+//     {
+//         // parent::__construct();
+//     }
+
+//     public function getImagesList($albumName)
+//     {
+//         $query =   "SELECT images.* FROM images 
+//                     INNER JOIN albums ON images.album_id = albums.id 
+//                     WHERE albums.album_name = '$albumName'";
+                
+//         // $mysqli = mysqli_query($this->mysqli, $query);
+        
+//         if($mysqli) {
+//             $images = [];
+//             // $album = mysqli_fetch_assoc($mysqli);
+
+//             while ($image = mysqli_fetch_assoc($mysqli)) {
+//                 // echo $album['album_name'] . '<br/>';
+//                 $images[] = $image;
+//             }
+//         }
+
+//         return $images;
+//     }
+// }
+
+class ImageModel 
 {
-    public function __construct()
+    private $image_name;
+    private $image;
+    private $description;
+
+    public function getImageName()
     {
-        parent::__construct();
+        return $this->image_name;
     }
 
-    public function getImagesList($albumName)
+    public function getImage()
     {
-        $query =   "SELECT images.* FROM images 
-                    INNER JOIN albums ON images.album_id = albums.id 
-                    WHERE albums.album_name = '$albumName'";
-                
-        $mysqli = mysqli_query($this->mysqli, $query);
-        
-        if($mysqli) {
-            $images = [];
-            // $album = mysqli_fetch_assoc($mysqli);
+        return $this->image;
+    }
 
-            while ($image = mysqli_fetch_assoc($mysqli)) {
-                // echo $album['album_name'] . '<br/>';
-                $images[] = $image;
-            }
-        }
-
-        return $images;
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    
+    public function __construct($image_name, $image, $description)
+    {
+        // $this->id = $id;
+        $this->image_name = $image_name;
+        $this->image = $image;
+        $this->description = $description;
     }
 }
