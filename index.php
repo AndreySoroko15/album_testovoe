@@ -20,8 +20,8 @@ $router->findPath(); // неизвестно почему считает, что
 // $urlParts = explode('/', $url);
 
 // Проверьте, если первая часть URL - 'album', и есть вторая часть
-if (isset($_GET['name'])) {
-    $albumName = $_GET['name'];
+if (isset($_GET['albumName'])) {
+    $albumName = $_GET['albumName'];
     $controller = new ImageController();
     // $controller->show($albumName);
 }

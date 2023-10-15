@@ -12,6 +12,7 @@ footer {
     height: 10%;
 }
 
+
 /* registry and login pages */
 
 .registry-form, .login-form {
@@ -34,6 +35,7 @@ footer {
 
 aside {
     width: 20%;
+    border-left: 2px solid rgb(220, 220, 220);
 }
 
 .album:hover {
@@ -54,6 +56,10 @@ aside {
     border-right: 2px solid rgb(220, 220, 220);
 }
 
+aside, .albums-dashboard {
+    background-color: rgba(220, 220, 220, 0.13);
+}
+
 .album-header {
     background-color: rgba(228, 228, 228, 0.329);
     border-bottom: 2px solid rgb(220, 220, 220);
@@ -63,20 +69,14 @@ aside {
     border: 1px solid rgba(16, 141, 16, 0.26);
     background-color: rgba(101, 221, 101, 0.151);
     border-radius: 10px;
+    margin: 0;
+    color: rgb(102, 102, 102);
 }
 
 .add-image-button:hover {
     border: 1px solid rgba(16, 141, 16, 0.575);
     background-color: rgba(84, 196, 84, 0.507);
     transition: 0.6s;
-}
-
-.add-image-button p {
-    margin: 0;
-    color: rgb(102, 102, 102);
-}
-
-.add-image-button:hover > p {
     color: rgb(0, 0, 0);
 }
 
@@ -93,5 +93,52 @@ aside {
     width: 30%;
     box-shadow: 0 0 6vh rgba(0, 0, 0, 0.274);
     opacity: 1;
-    display: none;
+}
+
+.allImagesCard {
+    width: 200px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.allImagesCard > img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+.find-image-button, .add-album-button {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.image-block, .description-block {
+    background-color: rgba(17, 17, 17, 0.027);
+    height: 83vh;
+}
+
+.image-block {
+    overflow: hidden;
+    border-left: 3px solid rgb(220, 220, 220);
+}
+
+.image-block > img {
+    height: 100%;
+}
+
+.description {
+    width: 80%;
+    height: max-content;
+    background-color: white;
+    border: 1px solid rgb(204, 203, 203);
+    border-radius: 10px;
+}
+
+.description > p {
+    margin: 0;
+}
+
+.description-block {
+    border-left: 3px solid rgb(220, 220, 220);
+    border-right: 3px solid rgb(220, 220, 220);
 }

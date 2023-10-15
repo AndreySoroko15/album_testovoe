@@ -9,7 +9,7 @@
                     <input  type="text" class="form-control" id="search" 
                             name="search" placeholder="Найти изображение">
                     <div class="input-group-append">
-                        <button type="submit" class="btn btn-dark">
+                        <button type="submit" class="btn btn-dark find-image-button">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
@@ -17,37 +17,38 @@
             </form>
         </div>
     </div>
+
+<?php if(!empty($images)) { ?>     
+    
     <div class="row">
-        <?php foreach ($images as $image): ?>
-        <div class="album-card col-3 p-4 text-center">
-            <img src="http://placehold.it/150x100">
-            <p><?= $image->getImageName() ?></p>
-        </div>
-        <?php endforeach; ?>
+
+    <?php foreach ($images as $image): ?>
+
+        <a href="/image?imageName=<?= $image->getImageName() ?>" class="col-3 p-4 ">
+            <div class="album-card text-center">
+                <div class="allImagesCard d-flex justify-content-center">
+                    <img src="<?= $image->getImage() ?>">
+                </div>
+                <p><?= $image->getImageName() ?></p>
+            </div>
+        </a>
+
+    <?php endforeach; ?>
+    
+</div>
+
+<?php } else if (isset($_GET['albumName'])) { ?>
+
+    <div class="d-flex justify-content-center align-items-center" style="height: 80%;">
+        <h1>Альбом пуст</h1>
     </div>
-</div>
-</div>
 
-<!-- Всплывающее окно добавление изображения -->
-<div class="add-image-block d-none">
-    <form action="/create-image" class="add-image-form form-group p-5" method="POST" enctype="multipart/form-data">
-        <input type="text" class="form-control" name="image_name" placeholder="Имя изображения" id="image_name">
-        <textarea class="form-control mt-4 mb-4" name="description" placeholder="Описание" id="description_image"></textarea>
-        <input type="file" class="form-control" name="image" id="image_file">
-        <input type="hidden" class="form-control" name="album_id" value="<?= $albums[0]->getId() ?>">
-        <input type="submit" value="Загрузить">
-    </form>
+<? } else { ?>
+    
+    <div class="d-flex justify-content-center align-items-center" style="height: 80%;">
+        <h1>Альбом не выбран</h1>
+    </div>
+    
+<? } ?>
 </div>
-<script>
-    $(document).ready(function() {
-        $('.add-image-button').on('click', function() {
-            let image_block = $('.add-image-block');
-
-            if(image_block.hasClass('d-none')) {
-                image_block.removeClass('d-none').addClass('d-block');
-            } else {
-                image_block.removeClass('d-block').addClass('d-none');
-            }
-        })
-    })
-</script>
+</div>

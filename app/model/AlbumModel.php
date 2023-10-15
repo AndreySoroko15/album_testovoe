@@ -6,6 +6,7 @@ class AlbumModel
 {
     private $id;
     private $album_name;
+    private $created_at;
 
     // public function __construct()
     // {
@@ -21,7 +22,12 @@ class AlbumModel
         return $this->album_name;
     }
 
-    public function __construct($id, $album_name)
+    public function getAlbumCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    public function __construct($id, $album_name, $created_at)
     {
         $this->id = $id;
         $this->album_name = $album_name;

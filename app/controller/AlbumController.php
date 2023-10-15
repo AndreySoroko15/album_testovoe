@@ -15,7 +15,9 @@ class AlbumController extends Controller
         session_start();
 
         $user_id = $_SESSION['user_id'];
-        $query = "SELECT * FROM albums WHERE user_id = '$user_id'";
+        $query =   "SELECT * FROM albums 
+                    WHERE user_id = '$user_id'
+                    ORDER BY album_name ASC";
 
         $mysqli = mysqli_query($this->mysqli, $query);
         
@@ -25,11 +27,37 @@ class AlbumController extends Controller
             while ($album = mysqli_fetch_assoc($mysqli)) {
                 // echo $album['album_name'] . '<br/>';
 
-                $albums[] = new AlbumModel($album['id'], $album['album_name']);
+                $albums[] = new AlbumModel($album['id'], $album['album_name'], $album['created_at']);
             }
         }
 
         return $albums;
+    }
+
+    public function currentAlbum($albumName)
+    {
+        session_start();
+
+        $user_id = $_SESSION['user_id'];
+        $album_name = $albumName;
+
+        $query = "SELECT * FROM albums WHERE album_name = '$album_name' AND user_id = '$user_id'";
+
+        // echo $query;
+        $mysqli = mysqli_query($this->mysqli, $query);
+
+        if($mysqli) {
+            // while ($album = mysqli_fetch_assoc($mysqli)) {
+            //     $currentAlbum = new AlbumModel($album['id'], $album['album_name'], $album['created_at']);
+            // }
+            while ($album = mysqli_fetch_assoc($mysqli)) {
+                $currentAlbum = $album['id'];
+            }
+
+        }
+
+        // echo '<pre>' . print_r($currentAlbum, true) . '</pre>';
+        return $currentAlbum;
     }
 
     public function notSelectedAlbum()
@@ -47,6 +75,25 @@ class AlbumController extends Controller
         } else {
             header('Location: /login');
         }
+    }
+
+    public function create()
+    {
+        session_start();
+
+        if(!empty($_POST['album_name'])) {
+
+            $albumName = $_POST['album_name'];
+            $userId = $_SESSION['user_id'];
+
+            $query =   "INSERT INTO albums (album_name, user_id)
+                        VALUES ('$albumName', '$userId')";
+
+            mysqli_query($this->mysqli, $query);
+        }
+
+        // echo $query;3
+        header("Location: {$_SERVER['HTTP_REFERER']}");
     }
 
 }

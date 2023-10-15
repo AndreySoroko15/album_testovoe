@@ -9,6 +9,8 @@
             </div>
         </footer>
         </div>
+
+        
         <!-- scripts -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"                  
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
@@ -18,3 +20,14 @@
         <script src="./js/changeActiveColorAlbumsHref.js"></script>
     </body>
 </html>
+        <!-- Всплывающее окно добавление изображения -->
+        <!-- Пришлось вставить сюда, тк из-за d-none все после этого блока переставало отображаться -->
+<div class="add-image-block d-none">
+    <form action="/create-image" class="add-image-form form-group p-5" method="POST" enctype="multipart/form-data">
+        <input type="text" class="form-control" name="image_name" placeholder="Имя изображения" id="image_name">
+        <textarea class="form-control mt-4 mb-4" name="description" placeholder="Описание" id="description_image"></textarea>
+        <input type="file" class="form-control" name="image" id="image_file">
+        <input type="submit" value="Загрузить">
+        <input type="hidden" class="form-control" name="album_id" value="<?= $currentAlbum->getId() ?>">
+    </form>
+</div>
