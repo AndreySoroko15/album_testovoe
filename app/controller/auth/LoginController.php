@@ -20,12 +20,22 @@ class LoginController {
         $login = $_POST['login'];
         $password = $_POST['password'];
 
-        if(!empty($login) && !empty($password)) {
-
+        if(empty($login) && empty($password)) {
+            $not_found_login = 'Введите логин!';
+            $not_found_password = 'Введите пароль!';
+        } else if (empty($password)) {
+            $not_found_password = 'Введите пароль!';
+        } else if (empty($login))  {
+            $not_found_login = 'Введите логин!';
+        } else if (!empty($password) && !empty($login)) {
             $user = new UserController();
-
-            $user->checkLoginUser($login, $password);
-            
+    
+            if($user->checkLoginUser($login, $password) == false) {
+                $not_found_user = 'Неверный логин или пароль';
+            }
         }
+        
+
+        require_once 'app/view/login.php';
     }
 }

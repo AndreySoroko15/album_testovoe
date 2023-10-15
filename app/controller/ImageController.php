@@ -154,6 +154,7 @@ class ImageController extends Controller
             if(empty($images)) {
                 $not_found_image = 'Совпадений не найдено';
             }
+
             // echo '<pre>' . print_r($images, true) . '</pre>';
             // die();
 
