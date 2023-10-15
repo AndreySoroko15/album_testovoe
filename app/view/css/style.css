@@ -50,6 +50,10 @@ aside {
     background-color: rgb(245, 245, 245);
 }
 
+.album-active > h2 {
+    color: black;
+}
+
 .albums-dashboard {
     width: 80%;
     border-left: 2px solid rgb(220, 220, 220);
@@ -141,4 +145,11 @@ aside, .albums-dashboard {
 .description-block {
     border-left: 3px solid rgb(220, 220, 220);
     border-right: 3px solid rgb(220, 220, 220);
+}
+
+/* для отображения ошибок */
+.error {
+    color: red;
+    margin: 0;
+    height: 1.5rem;
 }

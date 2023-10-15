@@ -16,7 +16,7 @@ class ImageController extends Controller
     {
         $query =   "SELECT images.* FROM images 
                     INNER JOIN albums ON images.album_id = albums.id 
-                    WHERE albums.album_name = '" . $_GET['albumName'] . "'";
+                    WHERE albums.album_name = '" . $albumName . "'";
                 
         $mysqli = mysqli_query($this->mysqli, $query);
         
@@ -125,6 +125,44 @@ class ImageController extends Controller
         require_once 'app/view/footer.php';
     }
 
+    public function search() 
+    {
+
+        session_start();
+
+        if(isset($_SESSION['login'])) {
+            $albumObj = new AlbumController();
+            $albums = $albumObj->getAlbums();
+            
+            $query =   "SELECT * FROM images 
+                        WHERE album_id = '{$_POST['album_id']}' 
+                        AND image_name LIKE '%{$_POST['search']}%'";
+
+            // echo $query;
+            // die();
+
+            $mysqli = mysqli_query($this->mysqli, $query);
+
+            if($mysqli) {
+                $images = [];
+
+                while ($image = mysqli_fetch_assoc($mysqli)) {
+                    $images[] = new ImageModel($image['image_name'], $image['image'], $image['description']);
+                }
+            }
+
+            if(empty($images)) {
+                $not_found_image = 'Совпадений не найдено';
+            }
+            // echo '<pre>' . print_r($images, true) . '</pre>';
+            // die();
+
+            require_once 'app/view/head.php';
+            require_once 'app/view/albums_list.php';
+            require_once 'app/view/all_images.php';
+            require_once 'app/view/footer.php';
+        }
+    }
 }
 
 

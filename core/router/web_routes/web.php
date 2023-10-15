@@ -28,6 +28,12 @@ class web {
             'method' => 'create',
         ),
 
+        '/search' => array (
+            'file' => 'app/controller/ImageController.php', 
+            'class' => 'ImageController',
+            'method' => 'search',
+        ),
+
         '/image' => array (
             'file' => 'app/controller/ImageController.php',
             'class' => 'ImageController',

@@ -1,19 +1,21 @@
 <div class="albums-dashboard">
-    <div class="d-flex align-items-center justify-content-evenly album-header pb-3">
-        <button class="add-image-button text-center mt-3 p-2">
+    <div class="d-flex align-items-center justify-content-evenly album-header">
+        <button class="add-image-button text-center p-2">
             Добавить изображение
         </button>
-        <div class="search-album pt-4 pb-2">
-            <form method="GET" action="#" class="search-form">
+        <div class="search-album pt-4">
+            <form method="POST" action="/search" class="search-form">
                 <div class="input-group">
                     <input  type="text" class="form-control" id="search" 
                             name="search" placeholder="Найти изображение">
+                    <input type="hidden" name="album_id" class="form-control" value="<?= $currentAlbum ?>">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-dark find-image-button">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
                 </div>
+                <p class="error"><?= $not_found_image ?></p>
             </form>
         </div>
     </div>

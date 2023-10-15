@@ -20,7 +20,7 @@
         <div class="all-albums">
             
             <?php foreach ($albums as $album): ?>
-
+                
             <a href="/album?albumName=<?= $album->getAlbumName() ?>">
                 <?php if($_GET['albumName'] == $album->getAlbumName()) { ?>
                     <div class="album album-active text-start p-2">
