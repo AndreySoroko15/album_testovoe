@@ -27,7 +27,7 @@ class ImageController extends Controller
             while ($image = mysqli_fetch_assoc($mysqli)) {
                 // echo $album['album_name'] . '<br/>';
                 // $images[] = $image;
-                $images[] = new ImageModel($image['image_name'], $image['image'], $image['description']);
+                $images[] = new ImageModel($image['id'], $image['image_name'], $image['image'], $image['description']);
 
             }
         }
@@ -37,13 +37,23 @@ class ImageController extends Controller
 
     public function create() 
     {
-        if(!empty($_FILES['image'])) {
+        if($_FILES['image']['size'] > 0) {
             $file = $_FILES['image'];
-
+            
+            
+            if(getimagesize($file['tmp_name']) == false) {
+                // print_r($file);
+                // die();
+                header("Location: {$_SERVER['HTTP_REFERER']}");
+            } else {
+            // print_r($_FILES);
+            // die();
+            
             $pathFile = "storage/images/{$file['name']}";
+            
             $typeFile = explode('/', $file['type']);
             $typeFile = $typeFile[1];
-
+            
             $nameImage = $_POST['image_name'];
             $imageDescription = $_POST['description'];
 
@@ -51,10 +61,10 @@ class ImageController extends Controller
             
             // print_r($file);
             // die();
-
+            
             if(!move_uploaded_file($file['tmp_name'], $pathFile)) {
-                echo 'Файл не загружен';
-            } 
+                    echo 'Файл не загружен';
+                } 
             // echo $typeFile;
             
             $query =   "INSERT INTO images (image_name, image, description, album_id) 
@@ -62,13 +72,24 @@ class ImageController extends Controller
 
             // echo $query;
 
-            mysqli_query($this->mysqli, $query);
-
-            // echo $pathFile;
-            // die();
+            $mysqli = mysqli_query($this->mysqli, $query);
         }
+    }
 
         header("Location: {$_SERVER['HTTP_REFERER']}");
+    }
+
+    public function delete() 
+    {
+        $image_id = $_POST['image_id'];
+
+        $query = "DELETE FROM images WHERE id = '{$image_id}'";
+
+        $mysqli = mysqli_query($this->mysqli, $query);
+
+        if($mysqli) {
+            header("Location: {$_SERVER['HTTP_REFERER']}");
+        }
     }
 
     public function showAllImages() 
@@ -82,6 +103,7 @@ class ImageController extends Controller
             
             $albumObj = new AlbumController();
             $albums = $albumObj->getAlbums();
+            $image = $_SESSION['user_id'];
 
             $currentAlbum = $albumObj->currentAlbum($_GET['albumName']);
             //ничего другого для получения текущего алalьбома в методе show не придумал 
@@ -91,6 +113,8 @@ class ImageController extends Controller
 
             // print_r($images);
             // die();
+
+            $mysqli = $this->mysqli;
 
         require_once 'app/view/head.php';
         require_once 'app/view/albums_list.php';
@@ -117,7 +141,7 @@ class ImageController extends Controller
         if($mysqli) {
             $image = mysqli_fetch_assoc($mysqli);
 
-            $currentImage = new ImageModel($image['image_name'], $image['image'], $image['description']);
+            $currentImage = new ImageModel($image['id'], $image['image_name'], $image['image'], $image['description']);
         }
 
         require_once 'app/view/head.php';
@@ -133,7 +157,7 @@ class ImageController extends Controller
         if(isset($_SESSION['login'])) {
             $albumObj = new AlbumController();
             $albums = $albumObj->getAlbums();
-            
+
             $query =   "SELECT * FROM images 
                         WHERE album_id = '{$_POST['album_id']}' 
                         AND image_name LIKE '%{$_POST['search']}%'";
@@ -147,7 +171,7 @@ class ImageController extends Controller
                 $images = [];
 
                 while ($image = mysqli_fetch_assoc($mysqli)) {
-                    $images[] = new ImageModel($image['image_name'], $image['image'], $image['description']);
+                    $images[] = new ImageModel($image['id'], $image['image_name'], $image['image'], $image['description']);
                 }
             }
 
@@ -157,6 +181,8 @@ class ImageController extends Controller
 
             // echo '<pre>' . print_r($images, true) . '</pre>';
             // die();
+
+            $mysqli = $this->mysqli;
 
             require_once 'app/view/head.php';
             require_once 'app/view/albums_list.php';

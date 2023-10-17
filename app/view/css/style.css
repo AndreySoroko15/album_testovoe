@@ -2,9 +2,13 @@ header {
     background-color: rgb(220, 220, 220) !important;
 }
 
-a {
+a, a:hover  {
     color: black;
     text-decoration: none;
+}
+
+p {
+    margin: 0;
 }
 
 footer {
@@ -99,13 +103,24 @@ aside, .albums-dashboard {
     opacity: 1;
 }
 
-.allImagesCard {
+.close-add-image-block {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+}
+
+.close-add-image-block > i {
+    font-size: 1.5rem;
+}
+
+
+.image {
     width: 200px;
     height: 150px;
     overflow: hidden;
 }
 
-.allImagesCard > img {
+.image > img {
     height: 100%;
     width: auto;
     object-fit: cover;
@@ -138,10 +153,6 @@ aside, .albums-dashboard {
     border-radius: 10px;
 }
 
-.description > p {
-    margin: 0;
-}
-
 .description-block {
     border-left: 3px solid rgb(220, 220, 220);
     border-right: 3px solid rgb(220, 220, 220);
@@ -152,4 +163,25 @@ aside, .albums-dashboard {
     color: red;
     margin: 0;
     height: 1.5rem;
+}
+
+.image {
+    position: relative;
+}
+
+.like-form {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.delete-image-form {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.btn-light {
+    background-color: rgba(252, 252, 252, 0.5) !important;
+    border: none;
 }

@@ -33,9 +33,15 @@
 
 class ImageModel 
 {
+    private $id;
     private $image_name;
     private $image;
     private $description;
+
+    public function getImageId()
+    {
+        return $this->id;
+    }
 
     public function getImageName()
     {
@@ -52,9 +58,9 @@ class ImageModel
         return $this->description;
     }
     
-    public function __construct($image_name, $image, $description)
+    public function __construct($id, $image_name, $image, $description)
     {
-        // $this->id = $id;
+        $this->id = $id;
         $this->image_name = $image_name;
         $this->image = $image;
         $this->description = $description;

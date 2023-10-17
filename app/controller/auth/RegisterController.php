@@ -5,13 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/controller/UserController.php';
 class RegisterController {
     public function index() 
     {
-        session_start(); 
-        
-        if(!isset($_SESSION['login'])) {
             require_once 'app/view/registry.php';
-        } else {
-            header('Location: /');
-        }
     }
 
     public function registration() {
@@ -23,11 +17,38 @@ class RegisterController {
         $password = $_POST['password'];
         $password_confirm = $_POST['password_confirm'];
         
-        if($password === $password_confirm) {
-            $password = password_hash($password, PASSWORD_DEFAULT);
+        if(empty($login)) {
 
+            $not_found_login = 'Введите логин';
+            require_once 'app/view/registry.php';
+
+        } else if(empty($email)) {
+
+            $not_found_email = 'Введите email';
+            require_once 'app/view/registry.php';
+
+        } else if(empty($password)) {
+
+            $not_found_password = 'Введите пароль';
+            require_once 'app/view/registry.php';
+
+        } else if(empty($password_confirm)) {
+
+            $not_found_password_confirm = 'Подтвердите пароль';
+            require_once 'app/view/registry.php';
+            
+        } else if ($password != $password_confirm) {
+
+            $error = 'Пароли не совпадают';
+            require_once 'app/view/registry.php';
+
+        } else if($password === $password_confirm) {
+
+            $password = password_hash($password, PASSWORD_DEFAULT);
+    
             $user = new UserController();
             $user->createUser($login, $email, $password);
         }
     }
+
 }

@@ -40,6 +40,19 @@ class web {
             'method' => 'show',
         ),
 
+        '/delete-image' => array (
+            'file' => 'app/controller/ImageController.php',
+            'class' => 'ImageController',
+            'method' => 'delete',
+        ),
+
+        // LikeController
+        '/like' => array (
+            'file' => 'app/controller/LikeController.php',
+            'class' => 'LikeController',
+            'method' => 'like',
+        ),
+
         // RegisterController
         '/registration' => array(
                 'file' => 'app/controller/auth/RegisterController.php',

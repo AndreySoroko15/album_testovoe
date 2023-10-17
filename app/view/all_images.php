@@ -1,4 +1,6 @@
 <div class="albums-dashboard">
+
+    <!-- шапка с добавлением и поиском изображения -->
     <div class="d-flex align-items-center justify-content-evenly album-header">
         <button class="add-image-button text-center p-2">
             Добавить изображение
@@ -19,25 +21,57 @@
             </form>
         </div>
     </div>
-
+    
 <?php if(!empty($images)) { ?>     
     
+
     <div class="row">
 
-    <?php foreach ($images as $image): ?>
+<?php foreach ($images as $image): ?>
+        
+    <a href="/image?imageName=<?= $image->getImageName() ?>" class="col-3 p-4 ">
+        <div class="image-card text-center">
+            <div class="image d-flex justify-content-center">
+                <img src="<?= $image->getImage() ?>">
+                <form method="POST" action="/delete-image" class="delete-image-form">
+                    <input type="hidden" name="image_id" value="<?= $image->getImageId() ?>">
+                    <button type="submit" class="btn btn-light">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </form>
+                <form method="POST" action="/like" class="like-form">
+                    <input type="hidden" name="image_id" class="form-control" value="<?= $image->getImageId() ?>">
+                        
+<!-- по другому без фреймворка реализовать не получалось, поэтому отображение лайков пришлось захардкодить -->
+    <?php
+            $queryLikedImage = "SELECT * FROM likes WHERE user_id = '{$_SESSION['user_id']}' 
+                                AND image_id = '{$image->getImageId()}'";
+            $result = mysqli_query($mysqli, $queryLikedImage);
+            $is_liked = mysqli_num_rows($result) > 0;
 
-        <a href="/image?imageName=<?= $image->getImageName() ?>" class="col-3 p-4 ">
-            <div class="album-card text-center">
-                <div class="allImagesCard d-flex justify-content-center">
-                    <img src="<?= $image->getImage() ?>">
-                </div>
-                <p><?= $image->getImageName() ?></p>
+            if($is_liked) { 
+    ?>
+
+                    <button type="submit" class="btn btn-light">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+
+    <?php   } else { ?>
+
+                        <button type="submit" class="btn btn-light like-image-button">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+    <?php } ?>
+
+                </form>
             </div>
-        </a>
-
-    <?php endforeach; ?>
+            <p><?= $image->getImageName() ?></p>
+        </div>
+    </a>
     
-</div>
+<?php endforeach; ?>
+
 
 <?php } else if (isset($_GET['albumName'])) { ?>
 
@@ -54,3 +88,4 @@
 <? } ?>
 </div>
 </div>
+

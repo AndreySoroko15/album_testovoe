@@ -8,4 +8,9 @@ $(document).ready(function() {
             image_block.removeClass('d-block').addClass('d-none');
         }
     })
+
+    $('.close-add-image-block').find('i').on('click', function() {
+
+        $('.add-image-block').removeClass('d-block').addClass('d-none');
+    })
 })

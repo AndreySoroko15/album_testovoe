@@ -80,7 +80,7 @@ class AlbumController extends Controller
     public function create()
     {
         session_start();
-
+        
         if(!empty($_POST['album_name'])) {
 
             $albumName = $_POST['album_name'];

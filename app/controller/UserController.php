@@ -18,11 +18,7 @@ class UserController extends Controller
         $create = mysqli_query($this->mysqli, $query);
 
         if($create) {
-            session_start();
-
-            $_SESSION['login'] = $login;
-            
-            header('Location: /');
+            header('Location: /login');
         } else {
             echo 'Ошибка: ' . mysqli_error($this->mysqli);
         }
@@ -50,20 +46,4 @@ class UserController extends Controller
             echo 'Ошибка' . mysqli_error($this->mysqli);
         }
     } 
-
-    // public static function getInstance() 
-    // {
-    //     if(!self::$instance) {
-    //         self::$instance = new self();
-    //     }
-
-    //     return self::$instance;
-    // }
-
-    // protected function __construct() 
-    // {
-    //     parent::__construct();
-    // }
-
-    // private function __clone() {}
 }

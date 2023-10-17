@@ -35,7 +35,7 @@ class LoginController {
             }
         }
         
-
+        
         require_once 'app/view/login.php';
     }
 }

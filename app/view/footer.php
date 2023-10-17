@@ -17,17 +17,20 @@
                 crossorigin="anonymous" defer>
         </script>
         <script src="https://kit.fontawesome.com/556b924220.js" crossorigin="anonymous"></script>
-        <script src="./js/changeActiveColorAlbumsHref.js"></script>
     </body>
-</html>
-        <!-- Всплывающее окно добавление изображения -->
-        <!-- Пришлось вставить сюда, тк из-за d-none все после этого блока переставало отображаться -->
-<div class="add-image-block d-none">
-    <form action="/create-image" class="add-image-form form-group p-5" method="POST" enctype="multipart/form-data">
-        <input type="text" class="form-control" name="image_name" placeholder="Имя изображения" id="image_name">
-        <textarea class="form-control mt-4 mb-4" name="description" placeholder="Описание" id="description_image"></textarea>
-        <input type="file" class="form-control" name="image" id="image_file">
-        <input type="submit" value="Загрузить">
-        <input type="hidden" class="form-control" name="album_id" value="<?= $currentAlbum->getId() ?>">
-    </form>
-</div>
+    </html>
+
+    <!-- Всплывающее окно добавление изображения -->
+    <!-- Пришлось вставить сюда, тк из-за d-none все после этого блока переставало отображаться -->
+    <div class="add-image-block d-none">
+        <div class="close-add-image-block">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <form action="/create-image" class="add-image-form form-group p-5 d-flex justify-content-center flex-column" method="POST" enctype="multipart/form-data">
+            <input type="text" class="form-control" name="image_name" placeholder="Имя изображения" id="image_name">
+            <textarea class="form-control mt-4 mb-4" name="description" placeholder="Описание" id="description_image"></textarea>
+            <input type="file" class="form-control" name="image" id="image_file">
+            <button type="submit" class="btn btn-secondary mt-4">Загрузить</button>
+            <input type="hidden" class="form-control" name="album_id" value="<?= $currentAlbum ?>">
+        </form>
+    </div>
